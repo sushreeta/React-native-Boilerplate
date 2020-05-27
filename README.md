@@ -1,9 +1,9 @@
 # React-native-Boilerplate
 
-##git clone https://github.com/sushreeta/React-native-Boilerplate.git
+git clone https://github.com/sushreeta/React-native-Boilerplate.git
 
-##npm install
+npm install
 
-##npx pod-install ios
+npx pod-install ios
 
-##npm run ios / npm run android
+npm run ios / npm run android
