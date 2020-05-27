@@ -69,7 +69,7 @@ const App: () => React$Node = () => {
           </View>
         </ScrollView>
       </SafeAreaView> */}
-      <Navigation/>
+      <Navigation />
     </>
   );
 };
