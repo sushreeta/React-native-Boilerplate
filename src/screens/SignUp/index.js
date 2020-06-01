@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -15,10 +15,12 @@ import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
+import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const SignInScreen = ({navigation}) => {
-  const [data, setData] = React.useState({
+const SignUnScreen = ({navigation}) => {
+  const [data, setData] = useState({
     username: '',
+    email: '',
     password: '',
     confirm_password: '',
     check_textInputChange: false,
@@ -78,11 +80,35 @@ const SignInScreen = ({navigation}) => {
       </View>
       <Animatable.View animation="fadeInUpBig" style={styles.footer}>
         <ScrollView>
-          <Text style={styles.text_footer}>Username</Text>
+          <Text style={styles.text_footer}>Full Name</Text>
           <View style={styles.action}>
             <FontAwesome name="user-o" color="#05375a" size={20} />
             <TextInput
               placeholder="Your Username"
+              style={styles.textInput}
+              autoCapitalize="none"
+              onChangeText={val => textInputChange(val)}
+            />
+            {data.check_textInputChange ? (
+              <Animatable.View animation="bounceIn">
+                <Feather name="check-circle" color="green" size={20} />
+              </Animatable.View>
+            ) : null}
+          </View>
+
+          <Text
+            style={[
+              styles.text_footer,
+              {
+                marginTop: 35,
+              },
+            ]}>
+            Email
+          </Text>
+          <View style={styles.action}>
+            <MaterialIcon name="email-outline" color="#05375a" size={20} />
+            <TextInput
+              placeholder="Your Email"
               style={styles.textInput}
               autoCapitalize="none"
               onChangeText={val => textInputChange(val)}
@@ -151,15 +177,19 @@ const SignInScreen = ({navigation}) => {
             <Text style={styles.color_textPrivate}>
               By signing up you agree to our
             </Text>
-            <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>
-              {' '}
-              Terms of service
-            </Text>
+            <TouchableOpacity>
+              <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>
+                {' '}
+                Terms of service
+              </Text>
+            </TouchableOpacity>
             <Text style={styles.color_textPrivate}> and</Text>
-            <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>
-              {' '}
-              Privacy policy
-            </Text>
+            <TouchableOpacity>
+              <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>
+                {' '}
+                Privacy policy
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.button}>
             <TouchableOpacity style={styles.signIn} onPress={() => {}}>
@@ -205,7 +235,7 @@ const SignInScreen = ({navigation}) => {
   );
 };
 
-export default SignInScreen;
+export default SignUnScreen;
 
 const styles = StyleSheet.create({
   container: {

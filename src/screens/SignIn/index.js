@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   View,
   Text,
@@ -12,13 +12,13 @@ import {
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Feather from 'react-native-vector-icons/Feather';
+import  Feather from 'react-native-vector-icons/Feather';
 
 import {useTheme} from 'react-native-paper';
 
-import {AuthContext} from '../../config/context/index';
+// import {AuthContext} from '../../config/context/index';
 
-import Users from '../model/users';
+import Users from './users';
 
 const SignInScreen = ({navigation}) => {
   const [data, setData] = React.useState({
@@ -32,7 +32,7 @@ const SignInScreen = ({navigation}) => {
 
   const {colors} = useTheme();
 
-  const {signIn} = React.useContext(AuthContext);
+  // const {signIn} = React.useContext(AuthContext);
 
   const textInputChange = val => {
     if (val.trim().length >= 4) {
@@ -90,26 +90,24 @@ const SignInScreen = ({navigation}) => {
   };
 
   const loginHandle = (userName, password) => {
-    // const foundUser = Users.filter(item => {
-    //   return userName == item.username && password == item.password;
-    // });
-
-    // if (data.username.length == 0 || data.password.length == 0) {
-    //   Alert.alert(
-    //     'Wrong Input!',
-    //     'Username or password field cannot be empty.',
-    //     [{text: 'Okay'}],
-    //   );
-    //   return;
-    // }
-
-    // if (foundUser.length == 0) {
-    //   Alert.alert('Invalid User!', 'Username or password is incorrect.', [
-    //     {text: 'Okay'},
-    //   ]);
-    //   return;
-    // }
-    // signIn(foundUser);
+    const foundUser = Users.filter(item => {
+      return userName == item.username && password == item.password;
+    });
+    if (data.username.length == 0 || data.password.length == 0) {
+      Alert.alert(
+        'Wrong Input!',
+        'Username or password field cannot be empty.',
+        [{text: 'Ok'}],
+      );
+      return;
+    }
+    if (foundUser.length == 0) {
+      Alert.alert('Invalid User!', 'Username or password is incorrect.', [
+        {text: 'Ok'},
+      ]);
+      return;
+    }
+    signIn(foundUser);
   };
 
   return (

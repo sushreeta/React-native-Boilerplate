@@ -23,7 +23,7 @@ const SplashScreen = ({navigation}) => {
         <Animatable.Image
           animation="bounceIn"
           duraton="1500"
-          source={require('../assets/logo.png')}
+          source={require('../../assets/images/Teacher_image1.jpg')}
           style={styles.logo}
           resizeMode="stretch"
         />
@@ -52,7 +52,6 @@ const SplashScreen = ({navigation}) => {
               colors={['#08d4c4', '#01ab9d']}
               style={styles.signIn}>
               <Text style={styles.textSign}>Get Started</Text>
-              <MaterialIcons name="navigate-next" color="#fff" size={20} />
             </LinearGradient>
           </TouchableOpacity>
         </View>
